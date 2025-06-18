@@ -10,32 +10,29 @@ public class Judgement {
     }
 
     public String result() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(countStrike())
-                .append(countBall())
-                .append(nothing());
-        return sb.toString();
+       int strike = ballCount.strike().size();
+       int ball = ballCount.ball().size();
+       int nothing = ballCount.equalsNumber().size();
+
+       return countBall(ball) + countStrike(strike)+ isNothing(nothing);
     }
 
-    public String countStrike() {
-        String sr = new String();
-        if(ballCount.strike().size()>0){
-        sr = (ballCount.strike().size() +"스트라이크");
-        } return sr;
+    public String countStrike(int strike) {
+        if(strike > 0){
+            System.out.println(ballCount.strike().size() +"스트라이크");
+        }return "";
     }
 
-    public String countBall() {
-            String sr = new String();
-            if (ballCount.ball().size() > 0) {
-                sr= (ballCount.ball().size() + "볼");
-            } return sr;
+    public String countBall(int ball) {
+            if (ball > 0) {
+                System.out.println(ballCount.ball().size() + "볼");
+            }return "";
         }
 
-    public String nothing() {
-        String sr = new String();
-        if(ballCount.equalsNumber().size() == 0) {
-            sr ="낫씽";
-        } return sr;
+    public String isNothing(int nothing) {
+        if( nothing == 0) {
+            System.out.println("낫씽");
+        }return "";
     }
 
 }
