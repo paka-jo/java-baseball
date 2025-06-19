@@ -7,11 +7,13 @@ import java.util.List;
 
 public class Player {
 
-    InputException exception = new InputException();
+    ExceptionMessage exceptionMessage = new ExceptionMessage();
+
     public List<Integer> guess() {
         System.out.print("숫자를 입력해주세요 : ");
         String[] input = Console.readLine().split("");
-        exception.threeDigitsOver(input);
+        exceptionMessage.checkInputLength(input);
+
         List<Integer> user = new ArrayList<>();
         for (String s : input) {
             user.add(Integer.parseInt(s));
