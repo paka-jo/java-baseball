@@ -24,7 +24,7 @@ public class Start {
             List<Integer> guess = player.guess();
             ballCount.setGuess(guess);
 
-            judgement.result();
+            System.out.println(judgement.result());
             if (guess.equals(correct)) break;
         }
         computer.end();
@@ -32,16 +32,10 @@ public class Start {
         if(ask == 1){
             restart();
         }
-        exit();
-
-
     }
 
     public void restart() {
-        button();
+        new Start().button();
     }
 
-    public void exit() {
-        System.exit(0);
-    }
 }

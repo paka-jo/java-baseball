@@ -34,15 +34,17 @@ public class BallCount {
     }
 
     public List<Integer> ball() {
-        equalsNumber().retainAll(strike());
+        List<Integer> common = new ArrayList<>(equalsNumber());
+        common.removeAll(strike());
 
-        return equalsNumber();
+        return common;
     }
 
     public List<Integer> equalsNumber() {
-        getGuess().retainAll(getCorrect());
+        List<Integer> common = new ArrayList<>(getGuess());
+        common .retainAll(getCorrect());
 
-        return getGuess();
+        return common ;
     }
 }
 
