@@ -5,20 +5,30 @@ import java.util.List;
 
 public class BallCount {
 
-    private final Computer computer;
-    private Player player;
+    private List<Integer> correct;
+    private List<Integer> guess;
 
-    public BallCount(Computer computer,Player player) {
-        this.computer = computer;
-        this.player = player;
+    public void setCorrect(List<Integer> correct) {
+        this.correct = correct;
     }
 
+    public void setGuess(List<Integer> guess) {
+        this.guess = guess;
+    }
+
+    public List<Integer> getCorrect() {
+        return correct;
+    }
+
+    public List<Integer> getGuess() {
+        return guess;
+    }
 
     public List<Integer> strike() {
         List<Integer> sameNumber = new ArrayList<>();
         for(int i = 0; i <3; i++) {
-           if(computer.correct().get(i) == player.guess().get(i)){
-               sameNumber.add(computer.correct().get(i));
+           if(getCorrect().get(i) == getGuess().get(i)){
+               sameNumber.add(getCorrect().get(i));
             }
         }return sameNumber;
     }
@@ -30,9 +40,9 @@ public class BallCount {
     }
 
     public List<Integer> equalsNumber() {
-        player.guess().retainAll(computer.correct());
+        getGuess().retainAll(getCorrect());
 
-        return player.guess();
+        return getGuess();
     }
 }
 

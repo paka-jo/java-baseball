@@ -19,19 +19,19 @@ public class Judgement {
 
     public String countStrike(int strike) {
         if(strike > 0){
-            System.out.println(ballCount.strike().size() +"스트라이크");
+            return strike +"스트라이크";
         }return "";
     }
 
     public String countBall(int ball) {
             if (ball > 0) {
-                System.out.println(ballCount.ball().size() + "볼");
+                return  ball + "볼";
             }return "";
         }
 
     public String isNothing(int nothing) {
         if( nothing == 0) {
-            System.out.println("낫씽");
+            return "낫씽";
         }return "";
     }
 

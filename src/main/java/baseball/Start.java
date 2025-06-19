@@ -12,15 +12,20 @@ public class Start {
     public Start() {
         this.computer = new Computer();
         this.player = new Player();
-        this.ballCount = new BallCount(computer,player);
+        this.ballCount = new BallCount();
         this.judgement = new Judgement(ballCount);
     }
 
     public void button() {
         computer.start();
         List<Integer> correct = computer.correct();
-        while (!player.guess().equals(correct)) {
+        ballCount.setCorrect(correct);
+        while (true) {
+            List<Integer> guess = player.guess();
+            ballCount.setGuess(guess);
+
             judgement.result();
+            if (guess.equals(correct)) break;
         }
         computer.end();
         int ask = computer.askRestart();
