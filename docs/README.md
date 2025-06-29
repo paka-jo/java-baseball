@@ -15,7 +15,7 @@
 
 ## GameHost 클래스
 ### 기능 
-- `start()` : 게임 시작 문구를 출력합니다
+- `baseballGame()` : 게임 시작 문구를 출력합니다
 - `end()` : 3스트라이크 시 게임 종료 문구를 출력합니다
 - `askRestart()` : 1입력시 종료, 2 입력 시 재시작을 합니다
 
@@ -31,7 +31,7 @@
 - `guess : List<Integer> `
 - `correct : List<Integer> `
 
-## Start 클래스
+## BaseballGame 클래스
 ### 기능
 - `runGame()` : 게임을 진행합니다
 
@@ -45,3 +45,21 @@
 ### 기능
 - `checkInputLength` : player 입력 숫자가 3자리에 대한 예외사항
 
+## 리팩토링에 대한 피드백 내용
+- 현재 마크다운 문서는 클래스 중심으로 되어 있음 -> 앞으로는 객체중심으로 작성
+- 클래스와 객체 대한 이해와 공부가 필요함
+- 연관 관계가 과함
+- 필드에 대해서 초기화를 할 때 생성자를 만들어서 초기화 해도 된다
+ex) ``` public AiPlayer(BallCounting ballCounting) {
+    this.ballCounting = ballCounting;
+    } ```
+-> ```  public AiPlayer() {
+        this.ballCounting = new BallCuonting(); 
+    }```
+- 클래스 명은 동사X, 명사 (Play 클래스 = 동사임)
+- 메서드명을 좀 더 명확하게!
+ex) `GameHost`에서 메서드명 `start` -> `printStart`, `end` -> `printEnd`,
+`AiPlayer`에서 `correct`-> `pickRandomNumber` 
+- `Setter`는 최대한 사용x
+- static 메서드에 대해서 공부해보고 `BallCounting` 클래스에서 활용 + 필드 선언이 필요x
+- 객체 다이어그램을 그리고 시작하는것도 좋음
