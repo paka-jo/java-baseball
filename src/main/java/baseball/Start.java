@@ -4,38 +4,33 @@ import java.util.List;
 
 public class Start {
 
-    private final Computer computer;
-    private final BallCount ballCount;
-    private Player player;
-    private Judgement judgement;
+    private final GameHost gameHost;
+    private final AiPlayer aiPlayer;
+    private final BallCounting ballCounting;
+    private final Player player;
 
     public Start() {
-        this.computer = new Computer();
+        this.gameHost = new GameHost();
+        this.ballCounting = new BallCounting();
+        this.aiPlayer = new AiPlayer(ballCounting);
         this.player = new Player();
-        this.ballCount = new BallCount();
-        this.judgement = new Judgement(ballCount);
     }
 
-    public void button() {
-        computer.start();
-        List<Integer> correct = computer.correct();
-        ballCount.setCorrect(correct);
+    public void runGame() {
+        gameHost.start();
+        List<Integer> correct = aiPlayer.correct();
+        ballCounting.setCorrect(correct);
         while (true) {
             List<Integer> guess = player.guess();
-            ballCount.setGuess(guess);
+            ballCounting.setGuess(guess);
 
-            System.out.println(judgement.result());
-            if (guess.equals(correct)) break;
+            System.out.println(aiPlayer.checkBallsAndStrikes(correct,guess));
+            if (guess.equals(correct)) {
+                System.out.println("3스트라이크");
+                break;
+            }
         }
-        computer.end();
-        int ask = computer.askRestart();
-        if(ask == 1){
-            restart();
-        }
+        gameHost.end();
+        gameHost.askRestart();
     }
-
-    public void restart() {
-        new Start().button();
-    }
-
 }
